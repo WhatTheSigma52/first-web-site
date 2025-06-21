@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from .models import Post, Group
+from django.shortcuts import get_object_or_404, render
+
+from .models import Group, Post
 
 
 def index(request):

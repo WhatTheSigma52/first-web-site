@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts.apps.PostsConfig',
     'about.apps.AboutConfig',
+    'users.apps.UsersConfig',
+    'core.apps.CoreConfig',
+    'blogws',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +127,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+LOGIN_URL = 'users:login'
+
+LOGIN_REDIRECT_URL = 'posts:index'

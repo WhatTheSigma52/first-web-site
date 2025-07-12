@@ -16,8 +16,6 @@ class Group(models.Model):
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
 
-    # добавить параметры из ссылки с урока
-
 
 class Post(models.Model):
     text = models.TextField(verbose_name='Текст поста')
@@ -37,9 +35,28 @@ class Post(models.Model):
     def __str__(self):
         return self.text[:20]
 
-    # добавить параметры из ссылки с урока
-
     class Meta:
         ordering = ('-pub_date',)
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
+
+
+class Comment(models.Model):
+    text = models.TextField(verbose_name='Текст комментария')
+    pub_date = models.DateTimeField(auto_now_add=True,
+                                    verbose_name='Дата публикации')
+    author = models.ForeignKey(User,
+                               on_delete=models.CASCADE,
+                               related_name='comments',
+                               verbose_name='Автор')
+    post = models.ForeignKey(Post,
+                             related_name='comments',
+                             verbose_name='Пост')
+
+    def __str__(self):
+        return self.text[0:20]
+
+    class Meta:
+        ordering = ('-pub_date',)
+        verbose_name = 'Комментарий',
+        verbose_name_plural = 'Комментарии'

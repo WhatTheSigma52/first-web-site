@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
-    'blogws',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'core.context_processors.year.year',
             ],
         },
     },
@@ -135,3 +136,7 @@ EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 LOGIN_URL = 'users:login'
 
 LOGIN_REDIRECT_URL = 'posts:index'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
